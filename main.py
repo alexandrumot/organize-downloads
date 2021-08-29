@@ -3,11 +3,11 @@ import os
 import os.path
 import time
 
+# Extract
 from zipfile import ZipFile
 import patoolib
 
 # Init folders and paths
-
 DOWNLOADS_FOLDER = 'C:/Users/<USER>/Downloads'
 
 IMAGES_FOLDER = 'C:/Users/<USER>/Downloads/Images'
@@ -51,7 +51,7 @@ def organizeDownloads():
             print(f'{file} IS MOVED TO {IMAGES_FOLDER[-6:]}')
 
         # Extract .zip folders and .rar files
-        elif str(file).endswith('.zip') or str(file).endswith('.rar'):
+        elif str(file).endswith('.zip'):
             # Unzipping Process
             try:
                 # Creating Destination
@@ -59,14 +59,26 @@ def organizeDownloads():
                 EXCEPTION_LIST.append(file[:-4])
 
                 # Unzipping to Destination
-                if str(file).endswith('.zip'):
-                    with ZipFile(os.path.join(DOWNLOADS_FOLDER, file), 'r') as zip:
-                        zip.extractall(os.path.join(DOWNLOADS_FOLDER, file)[:-4])
-                    print(f'{file} IS UNZIPPED AT {file[:-4]}')
-                else:
-                    # Extracting to Destination
-                    patoolib.extract_archive(file, outdir=os.path.join(DOWNLOADS_FOLDER, file)[:-4])
+                with ZipFile(os.path.join(DOWNLOADS_FOLDER, file), 'r') as zip:
+                    zip.extractall(os.path.join(DOWNLOADS_FOLDER, file)[:-4])
+                print(f'{file} IS UNZIPPED AT {file[:-4]}')             
                     
+            except FileExistsError:
+                pass
+
+            moveItem(file, ZIPS_FOLDER, 'Zips')
+            print(f'{file} IS MOVED TO {ZIPS_FOLDER[-4:]}')
+
+        elif str(file).endswith('.rar'):
+            try:
+
+                # Creating Destination
+                os.mkdir(os.path.join(DOWNLOADS_FOLDER, file)[:-4])
+                EXCEPTION_LIST.append(file[:-4])
+
+                # Extracting
+                patoolib.extract_archive(file, outdir=os.path.join(DOWNLOADS_FOLDER, file)[:-4])
+
             except FileExistsError:
                 pass
 

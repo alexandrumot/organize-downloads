@@ -5,7 +5,7 @@ import time
 
 # Extract
 from zipfile import ZipFile
-import patoolib
+from rarfile import RarFile
 
 # Init folders and paths
 DOWNLOADS_FOLDER = 'C:/Users/<USER>/Downloads'
@@ -76,8 +76,10 @@ def organizeDownloads():
                 os.mkdir(os.path.join(DOWNLOADS_FOLDER, file)[:-4])
                 EXCEPTION_LIST.append(file[:-4])
 
-                # Extracting
-                patoolib.extract_archive(file, outdir=os.path.join(DOWNLOADS_FOLDER, file)[:-4])
+                # Extracting to Destination
+                with RarFile(os.path.join(DOWNLOADS_FOLDER, file), 'r') as rar:
+                    rar.extractall(os.path.join(DOWNLOADS_FOLDER, file)[:-4])
+                print(f'{file} IS UNPACKED AT {file[:-4]}')
 
             except FileExistsError:
                 pass

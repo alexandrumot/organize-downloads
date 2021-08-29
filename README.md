@@ -5,7 +5,7 @@ cd organize-downloads
 ```
 ## Install dependencies
 ```
-pip3 install patool
+pip3 install rarfile
 ```
 ## Use
 If you want to use the script as it is, add the 4 folders to Downloads:

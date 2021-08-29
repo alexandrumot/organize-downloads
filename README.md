@@ -15,7 +15,9 @@ If you want to use the script as it is, add the 4 folders to Downloads:
 4. Others
 
 And add your <User> name in the const variables in main.py
-    **OR**
+
+      OR
+   
 You can **contribute** to make it better!
 
 ## I recommend...

@@ -5,7 +5,7 @@ cd organize-downloads
 ```
 ## Install dependencies
 ```
-pip3 install rarfile
+pip install -r requirements.txt
 ```
 ## Use
 Add the folders to Downloads:

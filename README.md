@@ -8,7 +8,7 @@ cd organize-downloads
 pip3 install rarfile
 ```
 ## Use
-If you want to use the script as it is, add the 4 folders to Downloads:
+Add the folders to Downloads:
 1. Apps
 2. Zips
 3. Images
